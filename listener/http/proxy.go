@@ -2,16 +2,16 @@ package http
 
 import (
 	"fmt"
-	"github.com/Dreamacro/clash/params"
+	"github.com/zhaofenghao/clash/params"
 	"net"
 	"net/http"
 	"strings"
 
-	"github.com/Dreamacro/clash/adapter/inbound"
-	N "github.com/Dreamacro/clash/common/net"
-	"github.com/Dreamacro/clash/component/auth"
-	C "github.com/Dreamacro/clash/constant"
-	"github.com/Dreamacro/clash/log"
+	"github.com/zhaofenghao/clash/adapter/inbound"
+	N "github.com/zhaofenghao/clash/common/net"
+	"github.com/zhaofenghao/clash/component/auth"
+	C "github.com/zhaofenghao/clash/constant"
+	"github.com/zhaofenghao/clash/log"
 )
 
 func HandleConn(c net.Conn, in chan<- C.ConnContext, authenticator auth.Authenticator) {

@@ -1,8 +1,8 @@
 package inbound
 
 import (
-	C "github.com/Dreamacro/clash/constant"
-	"github.com/Dreamacro/clash/context"
+	C "github.com/zhaofenghao/clash/constant"
+	"github.com/zhaofenghao/clash/context"
 	"net"
 	"net/http"
 )

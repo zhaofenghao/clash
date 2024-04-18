@@ -1,11 +1,11 @@
 package http
 
 import (
-	"github.com/Dreamacro/clash/component/auth"
-	authStore "github.com/Dreamacro/clash/listener/auth"
+	"github.com/zhaofenghao/clash/component/auth"
+	authStore "github.com/zhaofenghao/clash/listener/auth"
 	"net"
 
-	C "github.com/Dreamacro/clash/constant"
+	C "github.com/zhaofenghao/clash/constant"
 )
 
 type Listener struct {

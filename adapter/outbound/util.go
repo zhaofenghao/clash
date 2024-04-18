@@ -6,9 +6,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/Dreamacro/clash/component/resolver"
-	C "github.com/Dreamacro/clash/constant"
-	"github.com/Dreamacro/clash/transport/socks5"
+	"github.com/zhaofenghao/clash/component/resolver"
+	C "github.com/zhaofenghao/clash/constant"
+	"github.com/zhaofenghao/clash/transport/socks5"
 )
 
 func tcpKeepAlive(c net.Conn) {

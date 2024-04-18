@@ -4,12 +4,12 @@ import (
 	"bytes"
 	"encoding/binary"
 	"errors"
-	"github.com/Dreamacro/clash/params"
+	"github.com/zhaofenghao/clash/params"
 	"io"
 	"net"
 	"strconv"
 
-	"github.com/Dreamacro/clash/component/auth"
+	"github.com/zhaofenghao/clash/component/auth"
 )
 
 const Version = 0x04

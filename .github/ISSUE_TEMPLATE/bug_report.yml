@@ -32,8 +32,8 @@ I have tested using the dev branch, and the issue still exists.
 "
           required: true
         - label: "
-我已经仔细看过 [Documentation](https://github.com/Dreamacro/clash/wiki/) 并无法自行解决问题
-I have read the [documentation](https://github.com/Dreamacro/clash/wiki/) and was unable to solve the issue.
+我已经仔细看过 [Documentation](https://github.com/zhaofenghao/clash/wiki/) 并无法自行解决问题
+I have read the [documentation](https://github.com/zhaofenghao/clash/wiki/) and was unable to solve the issue.
 "
           required: true
         - label: "

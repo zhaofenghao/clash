@@ -2,9 +2,9 @@ package inbound
 
 import (
 	context2 "context"
-	C "github.com/Dreamacro/clash/constant"
-	"github.com/Dreamacro/clash/context"
-	"github.com/Dreamacro/clash/transport/socks5"
+	C "github.com/zhaofenghao/clash/constant"
+	"github.com/zhaofenghao/clash/context"
+	"github.com/zhaofenghao/clash/transport/socks5"
 	"net"
 )
 

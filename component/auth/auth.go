@@ -2,7 +2,7 @@ package auth
 
 import (
 	"fmt"
-	"github.com/Dreamacro/clash/params"
+	"github.com/zhaofenghao/clash/params"
 	"sync"
 )
 

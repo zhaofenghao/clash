@@ -2,17 +2,17 @@ package socks
 
 import (
 	"context"
-	"github.com/Dreamacro/clash/component/auth"
-	authStore "github.com/Dreamacro/clash/listener/auth"
-	"github.com/Dreamacro/clash/params"
+	"github.com/zhaofenghao/clash/component/auth"
+	authStore "github.com/zhaofenghao/clash/listener/auth"
+	"github.com/zhaofenghao/clash/params"
 	"io"
 	"net"
 
-	"github.com/Dreamacro/clash/adapter/inbound"
-	N "github.com/Dreamacro/clash/common/net"
-	C "github.com/Dreamacro/clash/constant"
-	"github.com/Dreamacro/clash/transport/socks4"
-	"github.com/Dreamacro/clash/transport/socks5"
+	"github.com/zhaofenghao/clash/adapter/inbound"
+	N "github.com/zhaofenghao/clash/common/net"
+	C "github.com/zhaofenghao/clash/constant"
+	"github.com/zhaofenghao/clash/transport/socks4"
+	"github.com/zhaofenghao/clash/transport/socks5"
 
 	"github.com/hashicorp/yamux"
 )

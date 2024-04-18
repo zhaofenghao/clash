@@ -4,11 +4,11 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/Dreamacro/clash/adapter/outbound"
-	"github.com/Dreamacro/clash/adapter/provider"
-	"github.com/Dreamacro/clash/common/structure"
-	C "github.com/Dreamacro/clash/constant"
-	types "github.com/Dreamacro/clash/constant/provider"
+	"github.com/zhaofenghao/clash/adapter/outbound"
+	"github.com/zhaofenghao/clash/adapter/provider"
+	"github.com/zhaofenghao/clash/common/structure"
+	C "github.com/zhaofenghao/clash/constant"
+	types "github.com/zhaofenghao/clash/constant/provider"
 )
 
 var (

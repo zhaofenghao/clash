@@ -2,17 +2,17 @@ package mixed
 
 import (
 	"context"
-	"github.com/Dreamacro/clash/component/auth"
-	authStore "github.com/Dreamacro/clash/listener/auth"
+	"github.com/zhaofenghao/clash/component/auth"
+	authStore "github.com/zhaofenghao/clash/listener/auth"
 	"net"
 
-	"github.com/Dreamacro/clash/common/cache"
-	N "github.com/Dreamacro/clash/common/net"
-	C "github.com/Dreamacro/clash/constant"
-	"github.com/Dreamacro/clash/listener/http"
-	"github.com/Dreamacro/clash/listener/socks"
-	"github.com/Dreamacro/clash/transport/socks4"
-	"github.com/Dreamacro/clash/transport/socks5"
+	"github.com/zhaofenghao/clash/common/cache"
+	N "github.com/zhaofenghao/clash/common/net"
+	C "github.com/zhaofenghao/clash/constant"
+	"github.com/zhaofenghao/clash/listener/http"
+	"github.com/zhaofenghao/clash/listener/socks"
+	"github.com/zhaofenghao/clash/transport/socks4"
+	"github.com/zhaofenghao/clash/transport/socks5"
 
 	"crypto/tls"
 	"github.com/quic-go/quic-go"

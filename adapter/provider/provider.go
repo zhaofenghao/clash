@@ -8,9 +8,9 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/Dreamacro/clash/adapter"
-	C "github.com/Dreamacro/clash/constant"
-	types "github.com/Dreamacro/clash/constant/provider"
+	"github.com/zhaofenghao/clash/adapter"
+	C "github.com/zhaofenghao/clash/constant"
+	types "github.com/zhaofenghao/clash/constant/provider"
 
 	"gopkg.in/yaml.v3"
 )

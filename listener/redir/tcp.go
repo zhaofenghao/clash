@@ -4,8 +4,8 @@ import (
 	"context"
 	"net"
 
-	"github.com/Dreamacro/clash/adapter/inbound"
-	C "github.com/Dreamacro/clash/constant"
+	"github.com/zhaofenghao/clash/adapter/inbound"
+	C "github.com/zhaofenghao/clash/constant"
 )
 
 type Listener struct {
