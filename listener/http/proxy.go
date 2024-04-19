@@ -117,8 +117,8 @@ func authenticate(ctx *params.ValueContext, request *http.Request, authenticator
 			authed = err == nil && authenticator.Verify(ctx, user, pass)
 		}
 		if !authed {
-			log.Infoln("Auth failed from %s !", request.RemoteAddr)
-			fmt.Errorf("auth failed from %s !", request.RemoteAddr)
+			log.Infoln("Auth failed from %s !!", request.RemoteAddr)
+			fmt.Errorf("auth failed from %s !!", request.RemoteAddr)
 			return responseWith(request, http.StatusForbidden)
 		}
 	}
