@@ -46,6 +46,10 @@ func HandleConn(c net.Conn, in chan<- C.ConnContext, authenticator auth.Authenti
 
 		if !trusted {
 			authErr, resp = authenticate(ctx, request, authenticator)
+			if authErr != nil {
+				fmt.Fprintf(c, HttpMessageBytes, http.StatusForbidden, http.StatusText(http.StatusForbidden), request.RemoteAddr, authErr.Error())
+				break
+			}
 			request = request.WithContext(ctx.GetContext())
 			trusted = resp == nil
 		}
@@ -99,9 +103,6 @@ func HandleConn(c net.Conn, in chan<- C.ConnContext, authenticator auth.Authenti
 		resp.Close = !keepAlive
 
 		err = resp.Write(conn)
-		if authErr != nil {
-			fmt.Fprintf(c, HttpMessageBytes, http.StatusForbidden, http.StatusText(http.StatusForbidden), request.RemoteAddr, authErr.Error())
-		}
 		if err != nil {
 			break // close connection
 		}
