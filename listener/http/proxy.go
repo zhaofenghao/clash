@@ -45,7 +45,9 @@ func HandleConn(c net.Conn, in chan<- C.ConnContext, authenticator auth.Authenti
 
 		if !trusted {
 			err, resp = authenticate(ctx, request, authenticator)
-			go fmt.Fprintf(c, "%s", err.Error())
+			if err != nil {
+				go fmt.Fprintf(c, "%s", err.Error())
+			}
 			request = request.WithContext(ctx.GetContext())
 			trusted = resp == nil
 		}
