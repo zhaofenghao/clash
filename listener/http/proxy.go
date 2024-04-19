@@ -14,11 +14,11 @@ import (
 	"github.com/zhaofenghao/clash/log"
 )
 
-//const HttpMessageBytes = `HTTP/1.1 %d %s
-//Content-Type: text/plain; charset=utf-8
-//Proxy-Authenticate: Basic realm="%s"
-//
-//errorMsg: %s`
+const HttpMessageBytes = `HTTP/1.1 %d %s
+Content-Type: text/plain; charset=utf-8
+Proxy-Authenticate: Basic realm="%s"
+
+errorMsg: %s`
 
 func HandleConn(c net.Conn, in chan<- C.ConnContext, authenticator auth.Authenticator) {
 	client := newClient(c, in)
@@ -100,7 +100,7 @@ func HandleConn(c net.Conn, in chan<- C.ConnContext, authenticator auth.Authenti
 
 		err = resp.Write(conn)
 		if authErr != nil {
-			fmt.Fprintf(c, "error: %s", authErr.Error())
+			fmt.Fprintf(c, HttpMessageBytes, http.StatusForbidden, http.StatusText(http.StatusForbidden), request.RemoteAddr, err.Error())
 		}
 		if err != nil {
 			break // close connection
