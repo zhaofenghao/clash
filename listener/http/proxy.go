@@ -45,11 +45,10 @@ func HandleConn(c net.Conn, in chan<- C.ConnContext, authenticator auth.Authenti
 
 		if !trusted {
 			err, resp = authenticate(ctx, request, authenticator)
-			//if err != nil {
-			//	fmt.Fprintf(c, "%s", err.Error())
-			//	conn.Close()
-			//	return
-			//}
+			if err != nil {
+				fmt.Fprintf(c, "error: %s", err.Error())
+				break
+			}
 			request = request.WithContext(ctx.GetContext())
 			trusted = resp == nil
 		}
@@ -104,7 +103,6 @@ func HandleConn(c net.Conn, in chan<- C.ConnContext, authenticator auth.Authenti
 
 		err = resp.Write(conn)
 		if err != nil {
-			fmt.Fprintf(c, "%s", err.Error())
 			break // close connection
 		}
 	}
