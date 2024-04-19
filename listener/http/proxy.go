@@ -130,7 +130,7 @@ func authenticate(ctx *params.ValueContext, request *http.Request, authenticator
 		}
 		if !authed {
 			log.Infoln("Auth failed from %s !!", request.RemoteAddr)
-			err = fmt.Errorf("auth failed from %s", request.RemoteAddr)
+			err = fmt.Errorf("auth failed,please check if the authentication information is correct")
 			return err, responseWith(request, http.StatusForbidden)
 		}
 	}
