@@ -14,6 +14,12 @@ import (
 	"github.com/zhaofenghao/clash/log"
 )
 
+const HttpMessageBytes = `HTTP/1.1 %d %s 
+Content-Type: text/plain; charset=utf-8
+Proxy-Authenticate: Basic realm="%s"
+
+errorMsg: %s`
+
 func HandleConn(c net.Conn, in chan<- C.ConnContext, authenticator auth.Authenticator) {
 	client := newClient(c, in)
 	defer client.CloseIdleConnections()
@@ -38,7 +44,8 @@ func HandleConn(c net.Conn, in chan<- C.ConnContext, authenticator auth.Authenti
 		ctx.SetRemoteIP(c.RemoteAddr().String())
 
 		if !trusted {
-			resp = authenticate(ctx, request, authenticator)
+			err, resp = authenticate(ctx, request, authenticator)
+			fmt.Fprintf(c, HttpMessageBytes, http.StatusForbidden, http.StatusText(http.StatusForbidden), request.RemoteAddr, err.Error())
 			request = request.WithContext(ctx.GetContext())
 			trusted = resp == nil
 		}
@@ -100,7 +107,8 @@ func HandleConn(c net.Conn, in chan<- C.ConnContext, authenticator auth.Authenti
 	conn.Close()
 }
 
-func authenticate(ctx *params.ValueContext, request *http.Request, authenticator auth.Authenticator) *http.Response {
+func authenticate(ctx *params.ValueContext, request *http.Request, authenticator auth.Authenticator) (error, *http.Response) {
+	var err error
 	if authenticator != nil {
 		credential := parseBasicProxyAuthorization(request)
 		var authed = false
@@ -110,7 +118,7 @@ func authenticate(ctx *params.ValueContext, request *http.Request, authenticator
 			if !isSupport {
 				resp := responseWith(request, http.StatusProxyAuthRequired)
 				resp.Header.Set("Proxy-Authenticate", "Basic")
-				return resp
+				return nil, resp
 			}
 		} else {
 			user, pass, err := decodeBasicProxyAuthorization(credential)
@@ -118,12 +126,12 @@ func authenticate(ctx *params.ValueContext, request *http.Request, authenticator
 		}
 		if !authed {
 			log.Infoln("Auth failed from %s !!", request.RemoteAddr)
-			fmt.Errorf("auth failed from %s !!", request.RemoteAddr)
-			return responseWith(request, http.StatusForbidden)
+			err = fmt.Errorf("auth failed from %s", request.RemoteAddr)
+			return err, responseWith(request, http.StatusForbidden)
 		}
 	}
 
-	return nil
+	return err, nil
 }
 
 func responseWith(request *http.Request, statusCode int) *http.Response {
