@@ -100,7 +100,7 @@ func HandleConn(c net.Conn, in chan<- C.ConnContext, authenticator auth.Authenti
 
 		err = resp.Write(conn)
 		if authErr != nil {
-			fmt.Fprintf(c, HttpMessageBytes, http.StatusForbidden, http.StatusText(http.StatusForbidden), request.RemoteAddr, err.Error())
+			fmt.Fprintf(c, HttpMessageBytes, http.StatusForbidden, http.StatusText(http.StatusForbidden), request.RemoteAddr, authErr.Error())
 		}
 		if err != nil {
 			break // close connection
