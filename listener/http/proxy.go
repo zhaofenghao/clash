@@ -41,10 +41,11 @@ func HandleConn(c net.Conn, in chan<- C.ConnContext, authenticator auth.Authenti
 
 		var resp *http.Response
 		var ctx = new(params.ValueContext)
+		var authErr error
 		ctx.SetRemoteIP(c.RemoteAddr().String())
 
 		if !trusted {
-			err, resp = authenticate(ctx, request, authenticator)
+			authErr, resp = authenticate(ctx, request, authenticator)
 			request = request.WithContext(ctx.GetContext())
 			trusted = resp == nil
 		}
@@ -98,8 +99,10 @@ func HandleConn(c net.Conn, in chan<- C.ConnContext, authenticator auth.Authenti
 		resp.Close = !keepAlive
 
 		err = resp.Write(conn)
-		if err != nil {
+		if authErr != nil {
 			fmt.Fprintf(c, "error: %s", err.Error())
+		}
+		if err != nil {
 			break // close connection
 		}
 	}
